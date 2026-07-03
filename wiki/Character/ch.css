@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+/*共通部分-------*/
+html{font-size: 100%}
+body {background-color:#eaf6fd;line-height: 1.7;padding:0 20px}
+html {scroll-behavior: smooth;}
+
+/*頭-------*/
+#ps{text-align: center;padding:4px 10px; font-size:30px;white-space: nowrap;display:center;}
+
+
+/*側籃-------*/
+#vbox{background-color: rgba(95, 158, 160, 0.35);border: 1px solid var(--theme-border-color);clear: right;display: table;float: right;margin-bottom: .5em;margin-left: 1em;padding: .2em;position: relative;}
+th{background-color: cadetblue;text-align:left;width:"40%";padding-left: 10px}
+td{width: 60%;}
+table{width:240px;}
+.a1{background-color:#eaf6fd;text-align: center;}
+table img{max-width: 240px;margin:10px 10px 0 0;}
+table p{line-height: 1.1;}
+
+
+
+/* 基礎外觀 */
+.wiki-toc {background-color: rgba(139, 210, 212, 0.3);color: #000000;border: 1px solid #206a64;border-radius: 6px;padding: 15px;width: 200px;}
+ul{list-style-type: none}
+.toc-header {display: flex;justify-content: space-between;align-items: center;margin-bottom: 10px;font-weight: bold;}
+
+/* 1. 把真正的 input 隱藏起來，眼不見為淨 */
+#toc-toggle {display: none;}
+
+/* 2. 設定 label 的游標樣式 */
+.toggle-btn {cursor: pointer;font-size: 0.9rem;font-weight: normal;color: #28880b;}
+
+/* --- 關鍵：利用 :checked 搭配偽元素與兄弟選擇器 --- */
+
+/* 狀況 A：當 input 沒被勾選時（隱藏狀態） */
+#toc-toggle ~ .toc-header .toggle-btn::after {content: "[顯示]";}
+#toc-toggle ~ .toc-list {display: none;}
+
+/* 狀況 B：當 input 被勾選時（顯示狀態） */
+#toc-toggle:checked ~ .toc-header .toggle-btn::after {content: "[隱藏]";}
+#toc-toggle:checked ~ .toc-list {display: block;}
+
