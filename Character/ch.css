@@ -4,26 +4,39 @@
 html{font-size: 100%}
 body {background-color:#eaf6fd;line-height: 1.7;padding:0 20px}
 html {scroll-behavior: smooth;}
-
+#xx{max-width: 870px;margin: 0 auto;background-color: rgba(95, 158, 160, 0.35);padding: 20px}
 /*頭-------*/
-#ps{text-align: center;padding:4px 10px; font-size:30px;white-space: nowrap;display:center;}
-
+header{display:flex;justify-content: space-between;max-width: 850px;margin: 0 auto;padding:0 4%;background-image: linear-gradient(#a0d9da,#A0C8DA);margin-bottom:10px;border-radius: 8px;}
+#cc{display: ruby}
+#cc img{margin-top: 10px}
 
 /*側籃-------*/
-#vbox{background-color: rgba(95, 158, 160, 0.35);border: 1px solid var(--theme-border-color);clear: right;display: table;float: right;margin-bottom: .5em;margin-left: 1em;padding: .2em;position: relative;}
-th{background-color: cadetblue;text-align:left;width:"40%";padding-left: 10px}
-td{width: 60%;}
-table{width:240px;}
+#vbox{background-color: rgba(95, 158, 160, 0.35);border: 1px solid;clear: right;display: table;float: right;margin-bottom: .5em;margin-left: 1em;padding: .2em;position: relative;}
+#vbox th{background-color: cadetblue;text-align:left;width:"40%";padding-left: 10px;padding: 20px;}
+#vbox td{width: 60%;}
+#vbox table{width:240px;}
 .a1{background-color:#eaf6fd;text-align: center;}
 table img{max-width: 240px;margin:10px 10px 0 0;}
 table p{line-height: 1.1;}
 
+@media(max-width:600px)
+{#vbox {background-color: rgba(95, 158, 160, 0.35);margin-left: auto;margin-right: auto;margin: 0 auto;float: none;}
+    table{width:80%;}
+    .asd{margin-left: auto;margin-right: auto;margin: 0 auto;margin-top: 10px}
+    
+}
 
+.wiki-to {background-color: rgba(139, 210, 212, 0.3);color: #000000;border: 1px solid #206a64;border-radius: 6px;padding: 15px;}
 
 /* 基礎外觀 */
 .wiki-toc {background-color: rgba(139, 210, 212, 0.3);color: #000000;border: 1px solid #206a64;border-radius: 6px;padding: 15px;width: 200px;}
 ul{list-style-type: none}
 .toc-header {display: flex;justify-content: space-between;align-items: center;margin-bottom: 10px;font-weight: bold;}
+#ps{text-align: center;padding:4px 10px; font-size:30px;white-space: nowrap;display:center;}
+@media(max-width:600px)
+{#ps{text-align: center;padding:4px 10px; font-size:30px;white-space:pre-line;display:center;}}
+#wu-text{color: #363636;font-size:14px;}
+.red{color: gray}
 
 /* 1. 把真正的 input 隱藏起來，眼不見為淨 */
 #toc-toggle {display: none;}
@@ -41,3 +54,22 @@ ul{list-style-type: none}
 #toc-toggle:checked ~ .toc-header .toggle-btn::after {content: "[隱藏]";}
 #toc-toggle:checked ~ .toc-list {display: block;}
 
+/*線-------*/
+.line{background-color: cadetblue;border: outset}
+
+.main-nav{display:flex;font-size: 1.25rem;margin-right: 10rem;white-space: nowrap}
+a{text-decoration: none;}
+.main-nav > li{margin-left: 36px}
+.main-nav .m:hover .aa{display:block;}
+.main-nav:hover .bb{display: none}
+.main-nav .m {position: relative;}
+.aa {display: none;position: absolute;top: 100%;left: 0;z-index: 999; white-space: nowrap;padding: 0;margin: 0;list-style: none;}
+.aa li {position: relative;padding-right: 15px;}
+.bb {display: none;position: absolute;top: 0;left: 100%;z-index: 1000;white-space: nowrap;;padding: 0;margin: 0;list-style: none;}
+.aa li:hover .bb {display: block;}
+
+.images img {width: 300px;}
+.images {display: flex;flex-wrap: wrap;gap: 30px;}
+.img_text{overflow-wrap: break-word; background-color: rgba(234, 246, 253, 0.26);border-radius: 10px;max-height: min-content}
+.a{padding-top: 10px;}
+.a img {max-height:300px;  object-fit: cover;object-position:top; }
