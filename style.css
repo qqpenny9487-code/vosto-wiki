@@ -1,0 +1,146 @@
+@charset "UTF-8";
+
+/*共通部分-------*/
+html{font-size: 100%}
+body {background-color:#eaf6fd;line-height: 1.7;padding:0 20px}
+html {scroll-behavior: smooth;}
+#xx{max-width: 870px;margin: 0 auto;background-color: rgba(95, 158, 160, 0.35);padding: 20px}
+
+/*頭-------*/
+header{display:flex;justify-content: space-between;max-width: 850px;margin: 0 auto;padding:0 4%;background-image: linear-gradient(#a0d9da,#A0C8DA);margin-bottom:10px;border-radius: 8px;}
+#cc{display: ruby}
+#cc img{margin-top: 10px}
+
+
+
+
+/* 基礎外觀 */
+.wiki-toc {background-color: rgba(139, 210, 212, 0.3);color: #000000;border: 1px solid #206a64;border-radius: 6px;padding: 15px;width: 200px;}
+ul{list-style-type: none}
+.toc-header {display: flex;justify-content: space-between;align-items: center;margin-bottom: 10px;font-weight: bold;}
+
+/* 1. 把真正的 input 隱藏起來，眼不見為淨 */
+#toc-toggle {display: none;}
+
+/* 2. 設定 label 的游標樣式 */
+.toggle-btn {cursor: pointer;font-size: 0.9rem;font-weight: normal;color: #28880b;}
+
+/* --- 關鍵：利用 :checked 搭配偽元素與兄弟選擇器 --- */
+
+/* 狀況 A：當 input 沒被勾選時（隱藏狀態） */
+#toc-toggle ~ .toc-header .toggle-btn::after {content: "[顯示]";}
+#toc-toggle ~ .toc-list {display: none;}
+
+/* 狀況 B：當 input 被勾選時（顯示狀態） */
+#toc-toggle:checked ~ .toc-header .toggle-btn::after {content: "[隱藏]";}
+#toc-toggle:checked ~ .toc-list {display: block;}
+
+input[type="radio"] {display: none;}/*先把預設的圓圈圈 radio 隱藏掉 */
+.content {display: none;padding: 20px;border: 5px solid #A0C8DA;}/*預設隱藏所有內容區塊 */
+#tab1:checked ~ .content1,#tab2:checked ~ .content2,#tab3:checked ~ .content3 {display:grid;}/*當對應的 radio 被選中時，顯示對應的內容 */
+label {padding: 10px 20px;background: #eee;cursor: pointer;display: inline-block;margin-top: 30px;}/*加樣式讓它像按鈕 */
+#tab1:checked ~ .nav label[for="tab1"],#tab2:checked ~ .nav label[for="tab2"],#tab3:checked ~ .nav label[for="tab3"] 
+{background: #3498db;color: white;}/*按鈕被選中時，改變按鈕顏色 */
+
+
+.picture {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 5rem);
+    gap: 40px;
+}
+
+/* 1. 外層容器：大小要跟照片一致，並設定為相對定位 */
+.character-card {
+  position: relative;
+  width: 100px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* 照片設定 */
+.character-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease; /* 讓照片放大有一點動態效果 */
+}
+
+/* 2. 文字層：鋪滿整個容器，置底，並預設為透明 (opacity: 0) */
+.character-name {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* 黑色半透明漸層背景，襯托白色文字 */
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 60%);
+  
+  /* 讓文字排在最下方置中 */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 20px;
+  
+  color: white;
+  opacity: 0; /* 預設隱藏 */
+  transition: opacity 0.3s ease; /* 讓文字浮現時有淡入效果 */
+}
+
+/* 3. 關鍵：當滑鼠懸浮在容器上時的變化 */
+.character-card:hover .character-name {
+  opacity: 1; /* 文字淡入顯示 */
+}
+
+.character-card:hover .character-img {
+  transform: scale(1.05); /* 照片微微放大，增加互動感（可省略） */
+}
+
+.novel-card {
+  display: flex;
+  align-items: flex-start; /* 關鍵：讓圖片和文字都從頂端對齊 */
+  gap: 15px;               /* 圖片和文字之間的間距 */
+  background-color: #e8f4fc; /* 配合你圖片中的淺藍色背景 */
+  padding: 15px;           /* 內邊距，讓邊緣留點空間 */
+  font-family: sans-serif; /* 設定字體 */
+}
+
+.novel-cover {
+  width: 100px;            /* 設定你想要的圖片寬度 */
+  height: 100px;           /* 設定你想要的圖片高度 */
+  object-fit: cover;       /* 避免圖片變形 */
+}
+
+.novel-content {
+  flex: 1;                 /* 讓文字區塊自動填滿右側剩餘的所有空間 */
+}
+
+/* 微調文字間距，讓它更像小說簡介的排版 */
+.novel-content h3 {
+  margin: 0 0 10px 0;      /* 清除預設邊距，並留下一點下邊距 */
+  font-size: 18px;
+}
+
+.novel-content p {
+  margin: 0 0 8px 0;       /* 段落與段落之間的間距 */
+  line-height: 1.5;        /* 行高，讓文字閱讀起來更舒適 */
+}
+
+.main-nav{display:flex;font-size: 1.25rem;margin-right: 10rem;white-space: nowrap}
+a{text-decoration: none;}
+.main-nav > li{margin-left: 36px}
+.main-nav .m:hover .aa{display:block;}
+.main-nav:hover .bb{display: none}
+.main-nav .m {position: relative;}
+.aa {display: none;position: absolute;top: 100%;left: 0;z-index: 999; white-space: nowrap;padding: 0;margin: 0;list-style: none;}
+.aa li {position: relative;padding-right: 15px;}
+.bb {display: none;position: absolute;top: 0;left: 100%;z-index: 1000;white-space: nowrap;;padding: 0;margin: 0;list-style: none;}
+.aa li:hover .bb {display: block;}
+.b{padding:1px 20px;margin: 10px;}
+
+.images img {width: 500px;}
+.images {display: flex;flex-wrap: wrap;gap: 30px;}
+.img_text{overflow-wrap: break-word; background-color: rgba(234, 246, 253, 0.26);border-radius: 10px;max-height: min-content;height: auto}
+.a{padding-top: 10px;}
+.a img {max-height:300px;  object-fit: cover;object-position:top; }
